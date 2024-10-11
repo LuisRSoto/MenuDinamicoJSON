@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu IndieBits</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container_m">
+            <div class="menu">
+                <button class="menu-toggle" aria-label="Abrir menú">&#9776;</button>
+                <nav>
+                    <ul id="dynamic-menu"></ul>
+                </nav>
+            </div>
+            <div class="buscar">
+                <input type="search" placeholder="Buscar...">
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>Bienvenido a IndieBits!</h1>
+        <div class="subscription-bar">
+            <input type="email" placeholder="Ingresa tu correo electrónico">
+            <button>Registrarse</button>
+        </div>
+
+        <div class="game-cards">
+            <!-- Aquí se muestran las tarjetas agregadas en game-cards.json -->
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
