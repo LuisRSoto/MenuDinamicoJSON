@@ -78,6 +78,10 @@ nav ul li ul.submenu {
     min-width: 150px;
 }
 
+nav ul li.active ul.submenu {
+    display: flex; /* Mostrar el submenú cuando el elemento está activo */
+}
+
 nav ul li:hover ul.submenu {
     display: flex;
 }
