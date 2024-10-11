@@ -3,30 +3,39 @@ function generarMenu(menuData) {
     const menu = document.getElementById('dynamic-menu');
   
     menuData.menu.forEach(item => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = item.url;
-      a.textContent = item.name;
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = item.url;
+        a.textContent = item.name;
   
-      li.appendChild(a);
+        li.appendChild(a);
   
-      if (item.submenu.length > 0) {
-        const submenu = document.createElement('ul');
-        submenu.classList.add('submenu');
+        if (item.submenu.length > 0) {
+            const submenu = document.createElement('ul');
+            submenu.classList.add('submenu');
   
-        item.submenu.forEach(subitem => {
-          const subLi = document.createElement('li');
-          const subA = document.createElement('a');
-          subA.href = subitem.url;
-          subA.textContent = subitem.name;
-          subLi.appendChild(subA);
-          submenu.appendChild(subLi);
-        });
+            item.submenu.forEach(subitem => {
+                const subLi = document.createElement('li');
+                const subA = document.createElement('a');
+                subA.href = subitem.url;
+                subA.textContent = subitem.name;
+                subLi.appendChild(subA);
+                submenu.appendChild(subLi);
+            });
   
-        li.appendChild(submenu);
-      }
+            li.appendChild(submenu);
+            // Agregar clase activa solo en dispositivos móviles
+            li.addEventListener('touchstart', (e) => {
+                if (!li.classList.contains('active')) {
+                    e.preventDefault();  // Evitar que redirija al tocar
+                    li.classList.add('active');  // Añadir clase para mostrar el submenú
+                } else {
+                    li.classList.remove('active');  // Cerrar el submenú si ya estaba abierto
+                }
+            });
+        }
   
-      menu.appendChild(li);
+        menu.appendChild(li);
     });
 }
 
@@ -35,24 +44,24 @@ function generarGameCards(juegosData) {
     const gameCardsContainer = document.querySelector('.game-cards');
     
     juegosData.games.forEach(juego => {
-      const gameCard = document.createElement('div');
-      gameCard.classList.add('game-card');
-      
-      const img = document.createElement('img');
-      img.src = juego.image;
-      img.alt = juego.name;
+        const gameCard = document.createElement('div');
+        gameCard.classList.add('game-card');
+        
+        const img = document.createElement('img');
+        img.src = juego.image;
+        img.alt = juego.name;
 
-      const h2 = document.createElement('h2');
-      h2.textContent = juego.name;
+        const h2 = document.createElement('h2');
+        h2.textContent = juego.name;
 
-      const p = document.createElement('p');
-      p.textContent = juego.description;
+        const p = document.createElement('p');
+        p.textContent = juego.description;
 
-      gameCard.appendChild(img);
-      gameCard.appendChild(h2);
-      gameCard.appendChild(p);
-      
-      gameCardsContainer.appendChild(gameCard);
+        gameCard.appendChild(img);
+        gameCard.appendChild(h2);
+        gameCard.appendChild(p);
+        
+        gameCardsContainer.appendChild(gameCard);
     });
 }
 
@@ -81,8 +90,8 @@ function cargarJuegos() {
 
 // Función para manejar el menú en pantallas móviles
 document.querySelector('.menu-toggle').addEventListener('click', function() {
-  const menu = document.querySelector('nav ul');
-  menu.classList.toggle('show');
+    const menu = document.querySelector('nav ul');
+    menu.classList.toggle('show');
 });
 
 // Llamar a las funciones para cargar el menú y las tarjetas de juegos
