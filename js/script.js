@@ -24,18 +24,37 @@ function generarMenu(menuData) {
             });
   
             li.appendChild(submenu);
-            // Agregar clase activa solo en dispositivos móviles
-            li.addEventListener('touchstart', (e) => {
-                if (!li.classList.contains('active')) {
-                    e.preventDefault();  // Evitar que redirija al tocar
-                    li.classList.add('active');  // Añadir clase para mostrar el submenú
-                } else {
-                    li.classList.remove('active');  // Cerrar el submenú si ya estaba abierto
+
+            // Para dispositivos móviles: control táctil
+            a.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {  // Solo en móviles
+                    e.preventDefault(); // Evitar la redirección inmediata
+
+                    // Si ya está activo, cerrarlo
+                    if (li.classList.contains('active')) {
+                        li.classList.remove('active');
+                    } else {
+                        // Cerrar otros submenús antes de abrir uno nuevo
+                        document.querySelectorAll('nav ul li').forEach((el) => {
+                            el.classList.remove('active');
+                        });
+                        li.classList.add('active');
+                    }
                 }
             });
         }
   
         menu.appendChild(li);
+    });
+
+    // Cerrar submenús al tocar fuera de ellos en dispositivos móviles
+    document.addEventListener('click', function (e) {
+        const isClickInside = menu.contains(e.target);
+        if (!isClickInside && window.innerWidth <= 768) {
+            document.querySelectorAll('nav ul li.active').forEach((el) => {
+                el.classList.remove('active');
+            });
+        }
     });
 }
 
