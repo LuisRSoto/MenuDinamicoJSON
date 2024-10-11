@@ -58,7 +58,7 @@ function generarGameCards(juegosData) {
 
 // Funciones para cargar el menú y las tarjetas de juegos desde sus archivos JSON
 function cargarMenu() {
-    fetch('json/menu.json')
+    fetch('https://raw.githubusercontent.com/LuisRSoto/MenuDinamicoJSON/refs/heads/main/json/menu.json')
       .then(response => response.json())
       .then(data => {
         generarMenu(data);
@@ -69,7 +69,7 @@ function cargarMenu() {
 }
 
 function cargarJuegos() {
-    fetch('json/game-cards.json')
+    fetch('https://raw.githubusercontent.com/LuisRSoto/MenuDinamicoJSON/refs/heads/main/json/game-cards.json')
       .then(response => response.json())
       .then(data => {
         generarGameCards(data);
@@ -82,7 +82,7 @@ function cargarJuegos() {
 // Función para manejar el menú en pantallas móviles
 document.querySelector('.menu-toggle').addEventListener('click', function() {
   const menu = document.querySelector('nav ul');
-  menu.classList.toggle('show'); // Añade o quita la clase "show" para mostrar/ocultar el menú
+  menu.classList.toggle('show');
 });
 
 // Llamar a las funciones para cargar el menú y las tarjetas de juegos
